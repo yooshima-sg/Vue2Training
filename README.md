@@ -1,6 +1,8 @@
-# TodoMVC for Training 
+# vue2-training 
 
-公式サイトの Vue.js 使用例として掲載している TodoMVC を SFC 化して研修用に利用できるようにしたものです。
+Vue.js 2 実習用のアプリです。
+
+[TodoMVC(Vue.js)](https://todomvc.com/) について SFC 化など実施し、一部改変したものです。
 
 ## プロジェクトのセットアップ
 
@@ -27,3 +29,7 @@ npm run build
 ```
 npm run lint
 ```
+
+## License
+
+MIT
