@@ -2,6 +2,7 @@
  * ストレージに入出力オブジェクト
  */
 
+// ローカルストレージに保存するためのキー
 const STORAGE_KEY = "todos-vuejs-2.0";
 
 const storage = {
@@ -11,7 +12,7 @@ const storage = {
     todos.forEach((todo, index) => {
       todo.id = index;
     });
-    storage.uid = todos.length;
+    this.uid = todos.length;
     return todos;
   },
   save(todos) {
