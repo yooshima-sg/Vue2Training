@@ -7,8 +7,6 @@ import '@/assets/style.css';
 /**
  * エントリ―ポイント
  */
-// Vue.config.productionTip = false;
-
 new Vue({
   render: h => h(App),
 }).$mount('#app');
