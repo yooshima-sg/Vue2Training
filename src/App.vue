@@ -21,7 +21,11 @@
     </main>
 
     <footer class="footer" v-show="todos.length" v-cloak>
+      <!-- 課題① ここから -->
       <span class="todo-count">残り <strong>{{ remaining }}</strong> 個</span>
+      <!-- 課題① ここまで -->
+
+      <!-- 課題③ ここから -->
       <ul class="filters">
         <li>
           <a href="#/all" :class="{ selected: visibility.value === 'all' }">すべて</a>
@@ -33,6 +37,8 @@
           <a href="#/completed" :class="{ selected: visibility.value === 'completed' }">完了済</a>
         </li>
       </ul>
+      <!-- 課題③ ここまで -->
+
       <button class="clear-completed" @click="removeCompleted" v-show="todos.length > remaining">完了済みを削除する</button>
     </footer>
   </section>
@@ -51,7 +57,7 @@ export default {
   
   data() {
     return {
-      todos: todoStorage.fetch(),
+      todos: todoStorage.fetch(),   // 課題②
       newTodo: "",
       editedTodo: null,
       visibility: extern.visibility,
@@ -59,19 +65,23 @@ export default {
   },
   // data の todos を監視して、変更があったら localStrage へ todos を保存する
   watch: {
+    // 課題② ここから
     todos: {
-      handler(todos) {
-        todoStorage.save(todos);
+      handler(newTodos) {
+        todoStorage.save(newTodos);
       },
       deep: true
     }
+    // 課題② ここまで
   },
   // 計算済プロパティ
   // http://v2.vuejs.org/guide/computed.html
   computed: {
+    // 課題③ ここから
     filteredTodos() {
       return filters[this.visibility.value](this.todos);
     },
+    // 課題③ ここまで
     remaining() {
       return filters.active(this.todos).length;
     },
