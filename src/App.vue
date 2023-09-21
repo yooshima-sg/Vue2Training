@@ -2,20 +2,23 @@
   <section class="todoapp">
     <header class="header">
       <h1>todos</h1>
-      <input class="new-todo" autofocus autocomplete="off" placeholder="終わらせたいタスクを入力" v-model="newTodo" @keyup.enter="addTodo"/>
+      <input class="new-todo" autofocus autocomplete="off" placeholder="終わらせたいタスクを入力" v-model="newTodo"
+        @keyup.enter="addTodo" />
     </header>
 
     <main class="main" v-show="todos.length" v-cloak>
-      <input id="toggle-all" class="toggle-all" type="checkbox" v-model="allDone"/>
+      <input id="toggle-all" class="toggle-all" type="checkbox" v-model="allDone" />
       <label for="toggle-all"></label>
       <ul class="todo-list">
-        <li class="todo" v-for="todo in filteredTodos" :key="todo.id" :class="{ completed: todo.completed, editing: todo == editedTodo }">
+        <li class="todo" v-for="todo in filteredTodos" :key="todo.id"
+          :class="{ completed: todo.completed, editing: todo == editedTodo }">
           <div class="view">
             <input class="toggle" type="checkbox" v-model="todo.completed" />
             <label @dblclick="editTodo(todo)">{{ todo.title }}</label>
             <button class="destroy" @click="removeTodo(todo)"></button>
           </div>
-          <input class="edit" type="text" v-model="todo.title" v-todo-focus="todo == editedTodo" @blur="doneEdit(todo)" @keyup.enter="doneEdit(todo)" @keyup.esc="cancelEdit(todo)"/>
+          <input class="edit" type="text" v-model="todo.title" v-todo-focus="todo == editedTodo" @blur="doneEdit(todo)"
+            @keyup.enter="doneEdit(todo)" @keyup.esc="cancelEdit(todo)" />
         </li>
       </ul>
     </main>
@@ -54,7 +57,7 @@ export default {
 
   components: {
   },
-  
+
   data() {
     return {
       todos: todoStorage.fetch(),   // 課題②
@@ -90,7 +93,7 @@ export default {
         return this.remaining === 0;
       },
       set(value) {
-        this.todos.forEach(function(todo) {
+        this.todos.forEach((todo) => {
           todo.completed = value;
         });
       }
@@ -98,10 +101,9 @@ export default {
   },
 
   // データ処理用メソッド
-  // ※ここではDOM操作しないでください。
   methods: {
     addTodo() {
-      var value = this.newTodo && this.newTodo.trim();
+      let value = this.newTodo.trim();
       if (!value) {
         return;
       }
@@ -114,7 +116,7 @@ export default {
     },
 
     removeTodo(todo) {
-      this.todos.splice(this.todos.indexOf(todo), 1);
+      this.todos = this.todos.filter((t) => t.id !== todo.id);
     },
 
     editTodo(todo) {
